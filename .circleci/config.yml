@@ -20,6 +20,10 @@ jobs:
   deploy:
     docker:
       - image: node:14
+    parameters:
+      my_job_param:
+        type: string
+        default: "triggered by commit"
     steps:
       - checkout
       - run:
