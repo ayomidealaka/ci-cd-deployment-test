@@ -38,6 +38,17 @@ parameters:
     type: string
     default: ""
 
+jobs:
+  do-the-thing:
+    docker:
+      - image: node:14
+    parameters:
+      my_job_param:
+        type: string
+        default: "triggered by commit"
+    steps:
+      - run: echo << parameters.my_job_param >>
+
 workflows:
   # Workflow triggered by API call / hitting "Trigger Pipeline" in the web interface
   api-triggered-workflow:
@@ -51,12 +62,3 @@ workflows:
       not: << pipeline.parameters.my_trigger_parameter >>
     jobs:
     - do-the-thing
-
-jobs:
-  do-the-thing:
-    parameters:
-      my_job_param:
-        type: string
-        default: "triggered by commit"
-    steps:
-      - run: echo << parameters.my_job_param >>
