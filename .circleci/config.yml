@@ -49,12 +49,22 @@ jobs:
     steps:
       - run: echo << parameters.my_job_param >>
 
+  do-the-thing2:
+    docker:
+      - image: node:14
+    parameters:
+      my_job_param:
+        type: string
+        default: "triggered by API/manually"
+    steps:
+      - run: echo << parameters.my_job_param >> 
+
 workflows:
   # Workflow triggered by API call / hitting "Trigger Pipeline" in the web interface
   api-triggered-workflow:
     when: << pipeline.parameters.my_trigger_parameter >>
     jobs:
-    - do-the-thing:
+    - do-the-thing2:
         my_job_param: << pipeline.parameters.my_trigger_parameter >>
   # Workflow triggered only by pushing a commit to the repository
   commit-triggered-workflow:
