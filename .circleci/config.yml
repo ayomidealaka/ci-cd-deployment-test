@@ -1,4 +1,10 @@
 version: 2.1
+
+parameters:
+  my_trigger_parameter:
+    type: string
+    default: ""
+
 jobs:
   build:
     docker:
@@ -20,13 +26,20 @@ jobs:
           name: Deploy to production
           command: echo "Deploying to production"
 workflows:
-  version: 2
-  build-and-deploy:
+  version: 2.0
+   # Workflow triggered by API call / hitting "Trigger Pipeline" in the web interface
+  commit-triggered-workflow-build-and-deploy:
+    when: 
+      not: << pipeline.parameters.my_trigger_parameter >>
     jobs:
       - build
+  api/manual-triggered-workflow-deploy:
+    when: << pipeline.parameters.my_trigger_parameter >>
+    jobs:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: master
+          my_job_param: << pipeline.parameters.my_trigger_parameter >>
+          # filters:
+          #   branches:
+          #     only: master
