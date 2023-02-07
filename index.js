@@ -1,7 +1,5 @@
-const assert = require("assert");
-
-describe("Example", function() {
-  it("1 + 1 should equal 2", function() {
-    assert.equal(1 + 1, 2);
-  });
-});
+function add(a, b) {
+    return a + b;
+  }
+  
+  console.assert(add(1, 1) === 2, "1 + 1 should equal 2");
