@@ -4,4 +4,4 @@ function add(a, b) {
   }
   
   console.log(add(1, 1) === 2, "1 + 1 should equal 2");
-  console.log("Triggering jenkinsfile")
+  console.log("Trigger jenkinsfile")
