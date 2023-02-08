@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy - Staging') {
             steps {
                 echo 'Deploying to Staging'
-                echo 'Staging deployed
+                echo 'Staging deployed'
                 echo 'Running smoke tests'
                 echo 'Smoke test passed'
             }
