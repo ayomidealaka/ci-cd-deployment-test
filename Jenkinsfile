@@ -7,9 +7,9 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Print Another Hello World') {
+        stage('Cloning Git') {
             steps {
-                echo 'Hello World'
+                sh 'git clone https://github.com/ayomidealaka/ci-cd-deployment-test.git'
             }
         }
     }
